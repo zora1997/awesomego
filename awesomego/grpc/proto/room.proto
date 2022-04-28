@@ -1,0 +1,58 @@
+syntax = "proto3";
+option go_package ="./proto";
+
+enum RoomType
+{
+  ROOM_TYPE_ALL = 0;  // 所有类型的房间
+  ROOM_TYPE_KTV = 1;  // 歌房
+  ROOM_TYPE_LIVE = 2; // 直播
+}
+
+enum GameType
+{
+  GAME_TYPE_ALL = 0;      // 所有玩法
+  GAME_TYPE_CP = 1;       // 心动交友
+  GAME_TYPE_KTV_GAME = 2; // 欢唱KTV
+  GAME_TYPE_SOLOKTV = 3;  // 单麦玩法
+}
+
+enum RoomTag
+{
+  ROOM_TAG_NONE = 0;     // 无标签
+  ROOM_TAG_OFFICIAL = 1; // 官方
+}
+
+message Room {
+    string id = 1; // 房间ID，歌房ID/直播间ID
+    RoomType type = 2;  // 房间类型，歌房或直播
+    GameType game_type = 3;  // 房间玩法类型，比如歌房分欢唱KTV和心动交友
+    RoomTag tag = 4;              // 房间标签
+    string name = 5;              // 房间标题，歌房名称/直播标题
+    string image_url = 6;         // 房间图片，歌房封面/主播头像
+    uint32 online_num = 7;  // 房间在线人数
+    uint32 country = 8;              // 房间所在国家
+    string lang = 9;              // 房间的语言
+    uint32 anchor_id = 10;          // 房主ID
+    float heat = 11;                    // 热度
+}
+
+message GetRoomsReq {
+  string id = 1;
+}
+
+message GetRoomsRsp {
+  Room room = 1;
+}
+
+message SetRoomsReq {
+  string id = 1;
+}
+
+message SetRoomsRsp {
+  Room room = 1;
+}
+
+service Rooms {
+  rpc GetRooms(GetRoomsReq) returns (GetRoomsRsp);
+  rpc SetRooms(SetRoomsReq) returns (SetRoomsRsp);
+}
