@@ -22,6 +22,7 @@ func doTimeOut(ctx context.Context) {
 	for {
 		//判断超时
 		if deadline, ok := ctx.Deadline(); ok {
+			fmt.Println(deadline.UnixMilli(), "deadline")
 			if time.Now().After(deadline) {
 				fmt.Println(ctx.Err().Error(), "timeout...")
 				return
