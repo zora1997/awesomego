@@ -7,6 +7,10 @@ import (
 
 func main() {
 	uids := []uint64{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	fu1(uids)
+}
+
+func fu1(uids []uint64) {
 	wg := sync.WaitGroup{}
 	wg.Add(1)
 	go func() {

@@ -1,4 +1,4 @@
-package playground
+package copy
 
 import "fmt"
 
