@@ -1,10 +1,14 @@
-package copy
+package main
 
 import "fmt"
 
 type testStruct struct {
 	uid  uint64
 	name string
+}
+
+func main() {
+
 }
 
 func Data() (orign []*testStruct) {
